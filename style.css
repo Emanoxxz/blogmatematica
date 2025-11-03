@@ -1,0 +1,303 @@
+/* --- Variáveis de Cores (para fácil modificação) --- */
+:root {
+    --primary-color: #4CAF50; /* Verde vibrante */
+    --secondary-color: #2E7D32; /* Verde escuro para hover */
+    --text-color: #333333;
+    --light-text-color: #555555;
+    --background-light: #f9f9f9; /* Mais claro */
+    --background-medium: #eeeeee;
+    --border-color: #e0e0e0;
+    --white: #ffffff;
+}
+
+/* --- Reset Básico e Fontes --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Adiciona rolagem suave para as 'abas' */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased; /* Melhor renderização de fonte */
+    text-rendering: optimizeLegibility; /* Melhor renderização de fonte */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transição suave na cor */
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* --- Cabeçalho / Navbar --- */
+.navbar {
+    background-color: var(--white);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra mais visível */
+    
+    /* Faz a navbar ficar fixa no topo ao rolar */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar h1 {
+    color: var(--text-color);
+    font-size: 1.8rem; /* Aumentado */
+    font-weight: 700; /* Mais negrito */
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar nav li {
+    margin-left: 2rem; /* Mais espaçamento */
+}
+
+.navbar nav a {
+    font-weight: 600; /* Levemente negrito */
+    color: var(--light-text-color);
+    padding: 0.5rem 0;
+    position: relative; /* Para o efeito de sublinhado */
+}
+
+.navbar nav a::after { /* Efeito de sublinhado animado */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.navbar nav a:hover::after {
+    width: 100%;
+}
+
+/* --- Layout Principal (PÁGINA INICIAL) --- */
+.container {
+    max-width: 1200px; /* Maior largura máxima */
+    margin: 2.5rem auto; /* Mais margem superior/inferior */
+    padding: 0 1.5rem; /* Mais padding nas laterais */
+    display: flex;
+    gap: 2.5rem; /* Mais espaço entre conteúdo e sidebar */
+}
+
+.content {
+    flex: 3;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+/* --- (NOVO) Layout da Sub-página (Sem Sidebar) --- */
+.container-single {
+    max-width: 800px; /* Mais estreito, focado na leitura */
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+/* --- Estilo dos Posts --- */
+.post {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* Cantos mais arredondados */
+    padding: 2.5rem; /* Mais padding */
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Sombra mais pronunciada */
+    
+    /* Ajuste para a rolagem da âncora não colar no topo */
+    scroll-margin-top: 100px; 
+}
+
+/* Remove o efeito de hover da página principal que não é necessário na sub-página */
+.container-single .post:hover {
+    transform: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.post h2 {
+    color: var(--text-color);
+    font-size: 2rem; /* Título maior */
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+}
+
+.post h3 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    font-size: 0.95rem; /* Levemente maior */
+    color: var(--light-text-color);
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.post-image {
+    width: 100%;
+    height: 250px; /* Altura fixa para imagens de destaque */
+    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.post p {
+    margin-bottom: 1rem;
+    color: var(--light-text-color);
+}
+
+.read-more {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.7rem 1.5rem; /* Mais padding no botão */
+    border-radius: 6px;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.read-more:hover {
+    background-color: var(--secondary-color);
+    text-decoration: none;
+    transform: translateY(-2px); /* Efeito de levantamento no botão */
+}
+
+/* --- Estilo da Lista de Tópicos (LLL, LAL...) --- */
+.lista-topicos {
+    list-style-position: inside; /* Coloca o bullet point dentro */
+    margin-left: 0.5rem;
+    padding-left: 0;
+}
+
+.lista-topicos li {
+    margin-bottom: 0.8rem;
+    color: var(--light-text-color);
+}
+
+/* --- Estilo da Sidebar --- */
+.widget {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem; /* Mais padding */
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+    /* Faz a sidebar ficar fixa ao rolar */
+    position: sticky;
+    top: 100px; /* Abaixo da navbar */
+}
+
+.widget h3 {
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--background-medium); /* Linha divisória mais suave */
+    padding-bottom: 0.8rem;
+    color: var(--text-color);
+    font-size: 1.3rem; /* Título maior */
+}
+
+.widget ul {
+    list-style: none;
+}
+
+.widget ul li {
+    margin-bottom: 0.8rem;
+}
+
+.widget ul li a {
+    color: var(--light-text-color);
+    transition: color 0.3s ease;
+}
+
+.widget ul li a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* --- Rodapé --- */
+.footer {
+    text-align: center;
+    padding: 2.5rem; /* Mais padding */
+    margin-top: 3rem; /* Mais margem superior */
+    background-color: var(--text-color); /* Fundo escuro */
+    color: var(--background-light); /* Texto claro */
+    font-size: 0.95rem;
+}
+
+/* --- Responsividade (para celulares) --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+        position: static; /* Remove a navbar fixa em mobile */
+    }
+
+    .navbar h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .navbar nav ul {
+        flex-wrap: wrap; /* Permite que os itens quebrem linha */
+        justify-content: center;
+    }
+
+    .navbar nav li {
+        margin: 0 0.8rem 0.5rem; /* Ajusta margem para celulares */
+    }
+    
+    .container {
+        flex-direction: column;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .post {
+        padding: 1.5rem;
+        scroll-margin-top: 20px; /* Ajuste da âncora para mobile */
+    }
+
+    .post h2 {
+        font-size: 1.5rem;
+    }
+    
+    .post h3 {
+        font-size: 1.3rem;
+    }
+
+    .widget {
+        padding: 1.5rem;
+        position: static; /* Remove a sidebar fixa em mobile */
+    }
+
+    .post-image {
+        height: 200px; /* Reduz a altura da imagem em mobile */
+    }
+}
